@@ -7,7 +7,7 @@
 window.PAINEL_DATA = window.PAINEL_DATA || {};
 
 window.PAINEL_DATA.gerencial = {
-  atualizadoEm: "2026-09-15",
+  atualizadoEm: "2026-09-16",
   cartoes: [
     {
       id: "tps",
@@ -16,8 +16,8 @@ window.PAINEL_DATA.gerencial = {
       status: "ativo",
       link: "paineis/tps.html",
       resumo: {
-        metrica1: { valor: "109%", label: "Aderência ao plano" },
-        metrica2: { valor: "85.908", label: "Projeção mensal (t)" },
+        metrica1: { valor: "105%", label: "Aderência ao plano" },
+        metrica2: { valor: "83.095", label: "Projeção mensal (t)" },
       },
     },
     {

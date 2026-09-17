@@ -15,7 +15,7 @@ window.PAINEL_DATA.tps = {
   contrato: "TPS",
   ano: 2026,
   mesAtual: "2026-09",
-  atualizadoEm: "2026-09-15",
+  atualizadoEm: "2026-09-16",
 
   mensal: {
     meses: [
@@ -24,32 +24,32 @@ window.PAINEL_DATA.tps = {
     ],
     desafio:   [220000, 164391, 104500, 183163, 163267, 106995, 58883, 93557, 121000, 0, 0, 0],
     plano:     [200852, 149446, 95000,  166512, 148424, 97268,  53530, 85052, 110000, 0, 0, 0],
-    realizado: [190703, 144740, 117798, 137195, 158042, 101923, 68857, 102679, 69800, 0, 0, 0],
+    realizado: [190703, 144740, 117798, 137195, 158042, 101923, 68857, 102679, 72708, 0, 0, 0],
   },
 
-  meta: { real: 69800, saldo: 40200, meta: 110000 },
+  meta: { real: 72708, saldo: 37292, meta: 110000 },
 
   kpisTonelagem: {
     planoMedioDiario: 4940,
-    realizadoMedioDiario: 5369,
-    aderenciaPercent: 109,
-    projecaoMensal: 85908,
+    realizadoMedioDiario: 5193,
+    aderenciaPercent: 105,
+    projecaoMensal: 83095,
   },
 
   kpisVagoes: {
     planoMedioDiario: 54,
-    realizadoMedioDiario: 57,
-    aderenciaPercent: 105,
+    realizadoMedioDiario: 55,
+    aderenciaPercent: 102,
     ritmoMedioVgHr: 4.4,
   },
 
-  turno7as19: { tempoMedio: "07:14", vagoesMedio: 30.5 },
+  turno7as19: { tempoMedio: "07:15", vagoesMedio: 30.8 },
   turno19as7: { tempoMedio: "08:01", vagoesMedio: 36.4 },
 
   planoDiarioVolume: 4940,
-  planoRecuperacaoMediaVolume: 5953,
+  planoRecuperacaoMediaVolume: 5745,
   planoDiarioVagoes: 54,
-  planoRecuperacaoMediaVagoes: 63,
+  planoRecuperacaoMediaVagoes: 61,
 
   diarioPorMes: {
     "2026-09": [
@@ -67,8 +67,8 @@ window.PAINEL_DATA.tps = {
       { dia: 12, data: "12/9/2026", status: "realizado",    volumeRealizado: 4461, vagoesRealizado: 45, vagoesHora: 4.86, horaVagoesHora: "9:15",  vagoes7as19: 0,  tempo7as19: "00:00", vagoes19as7: 25, tempo19as7: "08:05" },
       { dia: 13, data: "13/9/2026", status: "realizado",    volumeRealizado: 2488, vagoesRealizado: 25, vagoesHora: 3.95, horaVagoesHora: "6:20",  vagoes7as19: 28, tempo7as19: "07:40", vagoes19as7: 39, tempo19as7: "08:10" },
       { dia: 14, data: "14/9/2026", status: "realizado",    volumeRealizado: 6587, vagoesRealizado: 67, vagoesHora: 4.44, horaVagoesHora: "15:05", vagoes7as19: 39, tempo7as19: "08:15", vagoes19as7: 48, tempo19as7: "00:00" },
-      { dia: 15, data: "15/9/2026", status: "realizado",    volumeRealizado: 8095, vagoesRealizado: 87, vagoesHora: 5.30, horaVagoesHora: "16:25", vagoes7as19: 0,  tempo7as19: "00:00", vagoes19as7: 0,  tempo19as7: "00:00" },
-      { dia: 16, data: "16/9/2026", status: "pendente",     volumeRealizado: null, vagoesRealizado: null, vagoesHora: null, horaVagoesHora: null, vagoes7as19: 0, tempo7as19: "00:00", vagoes19as7: 0, tempo19as7: "00:00" },
+      { dia: 15, data: "15/9/2026", status: "realizado",    volumeRealizado: 8095, vagoesRealizado: 87, vagoesHora: 5.30, horaVagoesHora: "16:25", vagoes7as19: 34, tempo7as19: "07:00", vagoes19as7: 0,  tempo19as7: "00:00" },
+      { dia: 16, data: "16/9/2026", status: "realizado",    volumeRealizado: 2908, vagoesRealizado: 34, vagoesHora: 4.64, horaVagoesHora: "7:20", vagoes7as19: 0, tempo7as19: "00:00", vagoes19as7: 0, tempo19as7: "00:00" },
       { dia: 17, data: "17/9/2026", status: "pendente",     volumeRealizado: null, vagoesRealizado: null, vagoesHora: null, horaVagoesHora: null, vagoes7as19: 0, tempo7as19: "00:00", vagoes19as7: 0, tempo19as7: "00:00" },
       { dia: 18, data: "18/9/2026", status: "pendente",     volumeRealizado: null, vagoesRealizado: null, vagoesHora: null, horaVagoesHora: null, vagoes7as19: 0, tempo7as19: "00:00", vagoes19as7: 0, tempo19as7: "00:00" },
       { dia: 19, data: "19/9/2026", status: "pendente",     volumeRealizado: null, vagoesRealizado: null, vagoesHora: null, horaVagoesHora: null, vagoes7as19: 0, tempo7as19: "00:00", vagoes19as7: 0, tempo19as7: "00:00" },
