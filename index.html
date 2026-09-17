@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Painel Gerencial</title>
+<link rel="stylesheet" href="assets/dashboard.css" />
+</head>
+<body>
+<div class="page">
+  <div class="panel-header">
+    PAINEL GERENCIAL
+    <small id="atualizadoEm"></small>
+  </div>
+
+  <div id="cardsGrid" class="cards-grid"></div>
+
+  <div class="footer-note">
+    Cartões "aguardando dados" ficam prontos para receber o painel do respectivo site assim que os prints diários
+    começarem a ser enviados. Para atualizar, edite <code>data/gerencial.js</code> e <code>data/&lt;site&gt;.js</code>.
+  </div>
+</div>
+
+<script src="data/gerencial.js"></script>
+<script>
+(function () {
+  const g = window.PAINEL_DATA.gerencial;
+  document.getElementById("atualizadoEm").textContent = "Atualizado em " + (g.atualizadoEm || "-");
+
+  const grid = document.getElementById("cardsGrid");
+  g.cartoes.forEach((c) => {
+    const isActive = c.status === "ativo";
+    const tag = isActive ? "a" : "div";
+    const card = document.createElement(tag);
+    card.className = "site-card";
+    if (isActive) card.href = c.link;
+
+    const head = document.createElement("div");
+    head.className = "head";
+    head.innerHTML = `<span>${c.nome}</span><span class="badge${isActive ? "" : " pending"}">${
+      isActive ? "ATIVO" : "AGUARDANDO DADOS"
+    }</span>`;
+    card.appendChild(head);
+
+    const body = document.createElement("div");
+    body.className = "body";
+
+    const sub = document.createElement("div");
+    sub.className = "subtitle";
+    sub.textContent = c.subtitulo;
+    body.appendChild(sub);
+
+    if (isActive && c.resumo) {
+      const metrics = document.createElement("div");
+      metrics.className = "metrics";
+      [c.resumo.metrica1, c.resumo.metrica2].forEach((m) => {
+        const metric = document.createElement("div");
+        metric.className = "metric";
+        metric.innerHTML = `<div class="num">${m.valor}</div><div class="lbl">${m.label}</div>`;
+        metrics.appendChild(metric);
+      });
+      body.appendChild(metrics);
+
+      const cta = document.createElement("div");
+      cta.className = "cta";
+      cta.textContent = "Abrir painel →";
+      body.appendChild(cta);
+    } else {
+      const empty = document.createElement("div");
+      empty.className = "empty-state";
+      empty.textContent = "Sem dados diários lançados ainda.";
+      body.appendChild(empty);
+    }
+
+    card.appendChild(body);
+    grid.appendChild(card);
+  });
+})();
+</script>
+</body>
+</html>

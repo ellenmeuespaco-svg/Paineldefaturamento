@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Painel de Descarga — TPS</title>
+<link rel="stylesheet" href="../assets/dashboard.css" />
+</head>
+<body>
+<div class="page">
+  <div class="top-nav">
+    <a class="back" href="../index.html">&larr; Painel gerencial</a>
+    <span id="atualizadoEm" class="footer-note" style="margin:0"></span>
+  </div>
+
+  <div class="panel-header">
+    PAINEL DE DESCARGA — <span id="contratoNome"></span>
+    <small id="mesLabel"></small>
+  </div>
+
+  <div class="grid-3col">
+    <div class="main-col">
+      <div class="card">
+        <div class="legend-row">
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--series-blue)"></span>Desafio mês</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--series-orange)"></span>Plano mês</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--series-gray)"></span>Realizado</span>
+        </div>
+        <div id="chartMensal"></div>
+      </div>
+    </div>
+    <div class="side-col">
+      <div class="card" style="flex:1; display:flex; align-items:center; justify-content:center;">
+        <div id="chartGauge" style="width:100%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-3col" style="margin-top:16px; grid-template-columns: 1.6fr 1fr;">
+    <div class="main-col">
+
+      <div class="card">
+        <span class="section-title">Performance de Volume Realizado Diário</span>
+        <div class="legend-row">
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--series-gray)"></span>Realizado</span>
+          <span class="legend-item"><span class="legend-line"></span>Plano Diário</span>
+          <span class="legend-item"><span class="legend-line dotted"></span>Plano de Recuperação — Mês (Média)</span>
+        </div>
+        <div id="chartVolume"></div>
+      </div>
+
+      <div class="card">
+        <span class="section-title orange">Performance de Vagões Realizado Diário</span>
+        <div class="legend-row">
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--series-orange)"></span>Realizado</span>
+          <span class="legend-item"><span class="legend-line"></span>Plano Diário</span>
+          <span class="legend-item"><span class="legend-line dotted"></span>Plano de Recuperação — Mês (Média)</span>
+        </div>
+        <div id="chartVagoes"></div>
+      </div>
+
+      <div class="card">
+        <span class="section-title">Performance de Vagões/hora Diário</span>
+        <div class="legend-row">
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--series-blue)"></span>Realizado</span>
+          <span class="legend-item"><span class="legend-line" style="border-top-color:var(--series-orange); border-top-style:solid"></span>Plano Diário</span>
+        </div>
+        <div id="chartVgHora"></div>
+      </div>
+
+      <div class="card">
+        <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+          <span class="section-title">Performance Tempo de Operação Diária 7 às 19h</span>
+          <div class="pair-row" style="max-width:280px">
+            <div class="pair-tile"><div class="label">TEMPO MÉDIO</div><div class="value" id="tempoMedio719"></div></div>
+            <div class="pair-tile"><div class="label">VAGÕES MÉDIO</div><div class="value" id="vagoesMedio719"></div></div>
+          </div>
+        </div>
+        <div id="strip719" style="margin-top:10px"></div>
+      </div>
+
+      <div class="card">
+        <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+          <span class="section-title">Performance Tempo de Operação Diária 19 às 7h</span>
+          <div class="pair-row" style="max-width:280px">
+            <div class="pair-tile"><div class="label">TEMPO MÉDIO</div><div class="value" id="tempoMedio197"></div></div>
+            <div class="pair-tile"><div class="label">VAGÕES MÉDIO</div><div class="value" id="vagoesMedio197"></div></div>
+          </div>
+        </div>
+        <div id="strip197" style="margin-top:10px"></div>
+      </div>
+
+    </div>
+
+    <div class="side-col">
+      <div class="kpi-tile"><div class="label">PLANO DE DESCARGA<br/>MÉDIA DIÁRIA (t)</div><div class="value" id="kpiPlanoTon"></div></div>
+      <div class="kpi-tile"><div class="label">DESCARGA MÉDIA DIÁRIA<br/>REALIZADA (t)</div><div class="value" id="kpiRealTon"></div></div>
+      <div class="kpi-tile"><div class="label">ADERÊNCIA À DESCARGA<br/>PLANEJADA (%)</div><div class="value" id="kpiAderenciaTon"></div></div>
+      <div class="kpi-tile"><div class="label">PROJEÇÃO AO PLANO<br/>MENSAL (t)</div><div class="value" id="kpiProjecao"></div></div>
+
+      <div class="kpi-tile yellow"><div class="label">PLANO DE DESCARGA<br/>MÉDIA DIÁRIA (vg)</div><div class="value" id="kpiPlanoVg"></div></div>
+      <div class="kpi-tile yellow"><div class="label">DESCARGA MÉDIA DIÁRIA<br/>REALIZADA (vg)</div><div class="value" id="kpiRealVg"></div></div>
+      <div class="kpi-tile yellow"><div class="label">ADERÊNCIA AO PLANO<br/>DIÁRIO (%)</div><div class="value" id="kpiAderenciaVg"></div></div>
+      <div class="kpi-tile yellow"><div class="label">RITMO MÉDIO DE<br/>DESCARGA (vg/hr)</div><div class="value" id="kpiRitmo"></div></div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Dados extraídos do print diário recebido às 07h e às 19h. Para atualizar, edite <code>data/tps.js</code>.
+  </div>
+</div>
+
+<script src="../assets/charts.js"></script>
+<script src="../data/tps.js"></script>
+<script>
+(function () {
+  const d = window.PAINEL_DATA.tps;
+  const mesIdx = d.mensal.meses.findIndex((_, i) => d.mesAtual === `${d.ano}-${String(i + 1).padStart(2, "0")}`);
+  const diario = d.diarioPorMes[d.mesAtual] || [];
+
+  document.getElementById("contratoNome").textContent = d.contrato;
+  document.getElementById("mesLabel").textContent = d.mensal.meses[mesIdx] || "";
+  document.getElementById("atualizadoEm").textContent = "Atualizado em " + (d.atualizadoEm || "-");
+  document.title = `Painel de Descarga — ${d.contrato}`;
+
+  PainelCharts.renderGroupedBarChart(document.getElementById("chartMensal"), {
+    categories: d.mensal.meses,
+    series: [
+      { name: "Desafio mês", color: "var(--series-blue)", values: d.mensal.desafio },
+      { name: "Plano mês", color: "var(--series-orange)", values: d.mensal.plano },
+      { name: "Realizado", color: "var(--series-gray)", values: d.mensal.realizado },
+    ],
+  });
+
+  PainelCharts.renderGauge(document.getElementById("chartGauge"), d.meta);
+
+  const dayLabels = diario.map((x) => String(x.dia));
+
+  PainelCharts.renderDailyBarChart(document.getElementById("chartVolume"), {
+    days: dayLabels,
+    values: diario.map((x) => x.volumeRealizado),
+    color: "var(--series-gray)",
+    planoDiario: d.planoDiarioVolume,
+    planoMedia: d.planoRecuperacaoMediaVolume,
+  });
+
+  PainelCharts.renderDailyBarChart(document.getElementById("chartVagoes"), {
+    days: dayLabels,
+    values: diario.map((x) => x.vagoesRealizado),
+    color: "var(--series-orange)",
+    planoDiario: d.planoDiarioVagoes,
+    planoMedia: d.planoRecuperacaoMediaVagoes,
+  });
+
+  PainelCharts.renderRateChart(document.getElementById("chartVgHora"), {
+    days: dayLabels,
+    values: diario.map((x) => x.vagoesHora),
+    times: diario.map((x) => x.horaVagoesHora),
+    color: "var(--series-blue)",
+    planoDiario: d.kpisVagoes.ritmoMedioVgHr,
+  });
+
+  document.getElementById("tempoMedio719").textContent = d.turno7as19.tempoMedio;
+  document.getElementById("vagoesMedio719").textContent = PainelCharts.fmtDec(d.turno7as19.vagoesMedio, 1);
+  document.getElementById("tempoMedio197").textContent = d.turno19as7.tempoMedio;
+  document.getElementById("vagoesMedio197").textContent = PainelCharts.fmtDec(d.turno19as7.vagoesMedio, 1);
+
+  PainelCharts.renderDayStrip(document.getElementById("strip719"), {
+    dayLabels,
+    counts: diario.map((x) => x.vagoes7as19),
+    times: diario.map((x) => x.tempo7as19),
+  });
+  PainelCharts.renderDayStrip(document.getElementById("strip197"), {
+    dayLabels,
+    counts: diario.map((x) => x.vagoes19as7),
+    times: diario.map((x) => x.tempo19as7),
+  });
+
+  document.getElementById("kpiPlanoTon").textContent = PainelCharts.fmtInt(d.kpisTonelagem.planoMedioDiario);
+  document.getElementById("kpiRealTon").textContent = PainelCharts.fmtInt(d.kpisTonelagem.realizadoMedioDiario);
+  document.getElementById("kpiAderenciaTon").textContent = d.kpisTonelagem.aderenciaPercent + "%";
+  document.getElementById("kpiProjecao").textContent = PainelCharts.fmtInt(d.kpisTonelagem.projecaoMensal);
+
+  document.getElementById("kpiPlanoVg").textContent = PainelCharts.fmtInt(d.kpisVagoes.planoMedioDiario);
+  document.getElementById("kpiRealVg").textContent = PainelCharts.fmtInt(d.kpisVagoes.realizadoMedioDiario);
+  document.getElementById("kpiAderenciaVg").textContent = d.kpisVagoes.aderenciaPercent + "%";
+  document.getElementById("kpiRitmo").textContent = PainelCharts.fmtDec(d.kpisVagoes.ritmoMedioVgHr, 1);
+})();
+</script>
+</body>
+</html>
