@@ -14,7 +14,7 @@ assets/dashboard.css     -> estilo compartilhado
 assets/charts.js         -> gráficos (SVG puro, sem lib externa)
 ```
 
-Cada site/contrato (TPS, LOM 1, LOM 2, Arme Rio, Central de Resíduo) é um cartão
+Cada site/contrato (TPS, LON I, LON II, Arme Rio, Central de Resíduo) é um cartão
 no Painel Gerencial. Hoje só o **TPS** tem painel próprio; os demais aparecem como
 "aguardando dados" no mesmo formato de cartão, prontos para receber um painel
 (`paineis/<site>.html` + `data/<site>.js`) assim que os prints daquele site
@@ -46,7 +46,7 @@ print enviado nesta conversa:
 Quando o mês virar, crie uma nova chave em `diarioPorMes` (ex.: `"2026-10"`),
 atualize `mesAtual` e preencha `mensal.desafio/plano/realizado` do novo mês.
 
-## Adicionando um novo site (LOM 1, LOM 2, Arme Rio, Central de Resíduo)
+## Adicionando um novo site (LON I, LON II, Arme Rio, Central de Resíduo)
 
 1. Copie `data/tps.js` para `data/<site>.js`, ajustando `window.PAINEL_DATA.<site>`.
 2. Copie `paineis/tps.html` para `paineis/<site>.html`, trocando as referências
